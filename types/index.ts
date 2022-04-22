@@ -1,19 +1,16 @@
 export type User = {
-  image: {
-    png: string
-    webp: string
-  }
+  image: string
   username: string
 }
 
 export type Comment = {
   id: number
   content: string
-  createdAt: string
+  createdAt: Date
   score: number
   user: User
-  replies: Reply[]
-  actions: {
+  replies?: Reply[]
+  actions?: {
     reply: () => void
     delete: () => void
     edit: () => void
