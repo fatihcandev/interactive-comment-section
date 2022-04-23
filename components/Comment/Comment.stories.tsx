@@ -3,15 +3,18 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { mockData } from 'data'
-import { Comment } from './Comment'
+import { Comment, CommentProps } from './Comment'
 
 export default {
-  /* 👇 The title prop is optional.
-   * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
-   * to learn how to generate automatic titles
-   */
   title: 'Comment',
   component: Comment,
+  decorators: [
+    (story: ComponentStory<typeof Comment>, context) => (
+      <div style={{ maxWidth: 375 }}>
+        {story(story.args as CommentProps, context)}
+      </div>
+    ),
+  ],
 } as ComponentMeta<typeof Comment>
 
 const Template: ComponentStory<typeof Comment> = args => <Comment {...args} />

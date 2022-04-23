@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { Comment } from 'types'
 import { Header } from './Header'
 
-type CommentProps = {
+export type CommentProps = {
   comment: Comment
 }
 
@@ -23,5 +23,5 @@ export { CommentComponent as Comment }
 // create a styled component named Container p 16px bg white
 const Container = styled.div`
   padding: 16px;
-  background-color: white;
+  background-color: ${props => props.theme.colors.white};
 `
