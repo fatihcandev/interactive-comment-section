@@ -1,7 +1,7 @@
-import { mockData } from 'data'
 import React from 'react'
 import styled from 'styled-components'
 
+import { mockData } from 'data'
 import { Comment } from 'types'
 import { Actions } from './Actions'
 import { Info } from './Info'
@@ -14,7 +14,7 @@ const CommentComponent: React.FunctionComponent<CommentProps> = ({
   comment,
 }) => {
   const { user, createdAt } = comment
-  const isCurrentUser = mockData.currentUser.username === comment.user.username
+  const isCurrentUser = mockData.currentUser.username === user.username
   return (
     <Container>
       <Header>
