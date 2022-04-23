@@ -5,12 +5,12 @@ import TimeAgo from 'react-timeago'
 
 import { User } from 'types'
 
-type HeaderProps = {
+type InfoProps = {
   user: User
   createdAt: Date
 }
 
-export const Header: React.FunctionComponent<HeaderProps> = ({
+export const Info: React.FunctionComponent<InfoProps> = ({
   user,
   createdAt,
 }) => {
@@ -25,12 +25,12 @@ export const Header: React.FunctionComponent<HeaderProps> = ({
         />
       </Avatar>
       <Username>{user.username}</Username>
-      <TimeAgo date={createdAt} live={false} />
+      <StyledTimeAgo date={createdAt} live={false} />
     </Container>
   )
 }
 
-const Container = styled.header`
+const Container = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
@@ -46,4 +46,8 @@ const Avatar = styled.div`
 
 const Username = styled.span`
   font-weight: 500;
+`
+
+const StyledTimeAgo = styled(TimeAgo)`
+  color: ${props => props.theme.colors.grayishBlue};
 `
