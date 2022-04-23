@@ -2,6 +2,7 @@ import React from 'react'
 
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
+import { mockData } from 'data'
 import { Comment } from './Comment'
 
 export default {
@@ -13,12 +14,10 @@ export default {
   component: Comment,
 } as ComponentMeta<typeof Comment>
 
-const Template: ComponentStory<typeof Comment> = (args) => <Comment {...args} />
+const Template: ComponentStory<typeof Comment> = args => <Comment {...args} />
 
 export const Primary = Template.bind({})
 
 Primary.args = {
-  comment: {
-    content: 'This is a comment',
-  },
+  comment: mockData.comments[0],
 }

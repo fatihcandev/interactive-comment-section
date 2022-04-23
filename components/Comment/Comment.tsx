@@ -1,18 +1,27 @@
 import React from 'react'
+import styled from 'styled-components'
 
-import { type Comment } from 'types'
-
-import * as Styles from './style'
+import { Comment } from 'types'
+import { Header } from './Header'
 
 type CommentProps = {
-  // for now, we're just using the comment's content
-  comment: Partial<Comment>
+  comment: Comment
 }
 
 const CommentComponent: React.FunctionComponent<CommentProps> = ({
   comment,
 }) => {
-  return <Styles.Container>{comment.content}</Styles.Container>
+  return (
+    <Container>
+      <Header user={comment.user} createdAt={comment.createdAt} />
+    </Container>
+  )
 }
 
 export { CommentComponent as Comment }
+
+// create a styled component named Container p 16px bg white
+const Container = styled.div`
+  padding: 16px;
+  background-color: white;
+`
