@@ -1,5 +1,11 @@
-import '../styles/globals.css'
 import * as NextImage from 'next/image'
+import { addDecorator } from '@storybook/react'
+import { withThemesProvider } from 'storybook-addon-styled-component-theme'
+import { ThemeProvider } from 'styled-components'
+
+import { theme } from '../theme'
+
+import '../styles/globals.css'
 
 const OriginalNextImage = NextImage.default
 
@@ -17,3 +23,5 @@ export const parameters = {
     },
   },
 }
+
+addDecorator(withThemesProvider([theme], ThemeProvider))
