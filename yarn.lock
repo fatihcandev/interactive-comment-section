@@ -2619,6 +2619,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-timeago@^4.1.3":
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/@types/react-timeago/-/react-timeago-4.1.3.tgz#957baaa9f8ea98457ee63b6a57b57a616066ba35"
+  integrity sha512-XaaMBzuXLw7lxPPDs/fenlohcf3NDqM5qP4oOL/Meu+Hb1QChW4Igw/SruS1llEqch18RQB3wDTIwvqq4nivvw==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*":
   version "18.0.6"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.6.tgz#30206c3830af6ce8639b91ace5868bc2d3d1d96c"
@@ -4791,6 +4798,14 @@ enhanced-resolve@^4.5.0:
     graceful-fs "^4.1.2"
     memory-fs "^0.5.0"
     tapable "^1.0.0"
+
+enhanced-resolve@^5.7.0:
+  version "5.9.3"
+  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.9.3.tgz#44a342c012cbc473254af5cc6ae20ebd0aae5d88"
+  integrity sha512-Bq9VSor+kjvW3f9/MiiR4eE3XYgOl7/rS8lnSxbRbF3kS0B2r+Y9w5krBWxZgDxASVZbdYrn5wT4j/Wb0J9qow==
+  dependencies:
+    graceful-fs "^4.2.4"
+    tapable "^2.2.0"
 
 entities@^2.0.0:
   version "2.2.0"
@@ -8598,6 +8613,11 @@ react-textarea-autosize@^8.3.0:
     use-composed-ref "^1.0.0"
     use-latest "^1.0.0"
 
+react-timeago@^6.2.1:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/react-timeago/-/react-timeago-6.2.1.tgz#f19716811156617ceb9c9f9a44315d85197c7fba"
+  integrity sha512-b9EObWO8wy4qwfOzj+g/RQZRrPvtMv1Pz12FCdAWKWCXbDGt0rZLyiyTGEr0Lh1O8w5xa48CtRpl3LI+CtGCyw==
+
 react@18.0.0:
   version "18.0.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.0.0.tgz#b468736d1f4a5891f38585ba8e8fb29f91c3cb96"
@@ -9575,6 +9595,11 @@ tapable@^1.0.0, tapable@^1.1.3:
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-1.1.3.tgz#a1fccc06b58db61fd7a45da2da44f5f3a3e67ba2"
   integrity sha512-4WK/bYZmj8xLr+HUCODHGF1ZFzsYffasLUgEiMBY4fgtltdO6B4WJtlSbPaDTLpYTcGVwM2qLnFTICEcNxs3kA==
 
+tapable@^2.2.0:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/tapable/-/tapable-2.2.1.tgz#1967a73ef4060a82f12ab96af86d52fdb76eeca0"
+  integrity sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==
+
 tar@^6.0.2:
   version "6.1.11"
   resolved "https://registry.yarnpkg.com/tar/-/tar-6.1.11.tgz#6760a38f003afa1b2ffd0ffe9e9abbd0eab3d621"
@@ -9770,6 +9795,15 @@ ts-pnp@^1.1.6:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/ts-pnp/-/ts-pnp-1.2.0.tgz#a500ad084b0798f1c3071af391e65912c86bca92"
   integrity sha512-csd+vJOb/gkzvcCHgTGSChYpy5f1/XKNsmvBGO4JXS+z1v2HobugDz4s1IeFXM3wZB44uczs+eazB5Q/ccdhQw==
+
+tsconfig-paths-webpack-plugin@^3.5.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/tsconfig-paths-webpack-plugin/-/tsconfig-paths-webpack-plugin-3.5.2.tgz#01aafff59130c04a8c4ebc96a3045c43c376449a"
+  integrity sha512-EhnfjHbzm5IYI9YPNVIxx1moxMI4bpHD2e0zTXeDNQcwjjRaGepP7IhTHJkyDBG0CAOoxRfe7jCG630Ou+C6Pw==
+  dependencies:
+    chalk "^4.1.0"
+    enhanced-resolve "^5.7.0"
+    tsconfig-paths "^3.9.0"
 
 tsconfig-paths@^3.11.0, tsconfig-paths@^3.9.0:
   version "3.14.1"
