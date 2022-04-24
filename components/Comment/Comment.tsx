@@ -6,6 +6,8 @@ import { Comment } from 'types'
 import { Actions } from './Actions'
 import { Info } from './Info'
 import { Vote } from './Vote'
+import { Content } from './Content'
+import { mediaBreakpoint } from 'utils'
 
 export type CommentProps = {
   comment: Comment
@@ -37,21 +39,20 @@ const CommentComponent: React.FC<CommentProps> = ({ comment }) => {
 
   return (
     <Container>
-      <StyledVote
+      <Vote
         score={comment.score}
         onUpvote={handleUpvote}
         onDownvote={handleDownvote}
       />
-      <Header>
-        <Info user={user} createdAt={createdAt} isCurrentUser={isCurrentUser} />
-        <Actions
-          comment={comment}
-          isCurrentUser={isCurrentUser}
-          onDelete={handleDelete}
-          onEdit={handleEdit}
-          onReply={handleReply}
-        />
-      </Header>
+      <Info user={user} createdAt={createdAt} isCurrentUser={isCurrentUser} />
+      <Actions
+        comment={comment}
+        isCurrentUser={isCurrentUser}
+        onDelete={handleDelete}
+        onEdit={handleEdit}
+        onReply={handleReply}
+      />
+      <Content content={comment.content} />
     </Container>
   )
 }
@@ -59,20 +60,22 @@ const CommentComponent: React.FC<CommentProps> = ({ comment }) => {
 export { CommentComponent as Comment }
 
 const Container = styled.div`
-  padding: 16px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto 1fr;
+  align-items: center;
+  column-gap: 24px;
+  padding: 24px;
   background-color: white;
   border-radius: 8px;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
-  column-gap: 24px;
-`
 
-const Header = styled.header`
-  display: flex;
-  align-items: center;
-`
-
-const StyledVote = styled(Vote)`
-  grid-row: 1 / 3;
+  ${mediaBreakpoint({
+    breakpoint: 'md',
+    styles: `
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto 1fr auto;
+      padding: 16px;
+      column-gap: 20px;
+    `,
+  })}
 `

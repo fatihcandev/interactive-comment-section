@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import TimeAgo from 'react-timeago'
 
 import { User } from 'types'
+import { mediaBreakpoint } from 'utils'
 
 type InfoProps = {
   user: User
@@ -31,6 +32,15 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+
+  ${mediaBreakpoint({
+    breakpoint: 'md',
+    styles: `
+      grid-column: 1 / 3;
+    `,
+  })}
 `
 
 const Avatar = styled.img`

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { IconButton } from 'components'
 import { Delete, Edit, Reply } from 'components/icons'
 import { Comment } from 'types'
+import { mediaBreakpoint } from 'utils'
 
 type ActionsProps = {
   comment: Comment
@@ -45,6 +46,16 @@ export const Actions: React.FC<ActionsProps> = ({
 
 const Container = styled.div`
   margin-left: auto;
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+
+  ${mediaBreakpoint({
+    breakpoint: 'md',
+    styles: `
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+    `,
+  })}
 `
 
 const DeleteEditActionContainer = styled.div`

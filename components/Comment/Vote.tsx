@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import { Minus, Plus } from 'components/icons'
 import { IconButton } from 'components/IconButton'
+import { mediaBreakpoint } from 'utils'
 
 type VoteProps = {
   score: number
@@ -34,17 +35,29 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 18px;
+  align-self: flex-start;
+  padding: 16px 12px;
   background-color: ${props => props.theme.colors.veryLightGray};
   border-radius: 8px;
+  font-weight: 500;
   color: ${props => props.theme.colors.moderateBlue};
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+
+  ${mediaBreakpoint({
+    breakpoint: 'md',
+    styles: `
+      grid-row: 3 / 4;
+      flex-direction: row;
+      justify-content: center;
+      padding: 12px;
+    `,
+  })}
 `
 
 const VoteButton = styled(IconButton)`
   transition: color 0.25s ease;
-  position: relative;
-  left: 2px;
-  padding: 12px;
 
   &:hover {
     color: ${props => props.theme.colors.moderateBlue};
