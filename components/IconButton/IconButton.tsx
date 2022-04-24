@@ -1,19 +1,20 @@
-import { ReactElement, SVGProps } from 'react'
+import { ComponentPropsWithoutRef, ReactElement, SVGProps } from 'react'
 import styled, { DefaultTheme } from 'styled-components'
 
-export type IconButtonProps = {
+export interface IconButtonProps extends ComponentPropsWithoutRef<'button'> {
   icon: ReactElement<SVGProps<SVGSVGElement>>
   label?: string
-  color: keyof DefaultTheme['colors']
+  color?: keyof DefaultTheme['colors']
 }
 
 export const IconButton: React.FunctionComponent<IconButtonProps> = ({
   icon,
   label,
   color,
+  ...props
 }) => {
   return (
-    <Container color={color}>
+    <Container color={color || 'moderateBlue'} {...props}>
       {icon}
       {label && <Label>{label}</Label>}
     </Container>
