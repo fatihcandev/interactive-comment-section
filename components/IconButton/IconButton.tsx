@@ -29,6 +29,7 @@ const Container = styled.button<ContainerProps>`
   display: flex;
   align-items: center;
   color: ${props => props.theme.colors[props.color]};
+  font-size: 16px;
   font-weight: 500;
 `
 
