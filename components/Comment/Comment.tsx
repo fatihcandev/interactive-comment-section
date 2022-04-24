@@ -10,16 +10,33 @@ export type CommentProps = {
   comment: Comment
 }
 
-const CommentComponent: React.FunctionComponent<CommentProps> = ({
-  comment,
-}) => {
+const CommentComponent: React.FC<CommentProps> = ({ comment }) => {
   const { user, createdAt } = comment
   const isCurrentUser = mockData.currentUser.username === user.username
+
+  function handleDelete(commentId: number) {
+    console.log('clicked on delete', commentId)
+  }
+
+  function handleEdit() {
+    console.log('clicked on edit')
+  }
+
+  function handleReply(commentId: number, replyingTo: string) {
+    console.log('clicked on reply', commentId, replyingTo)
+  }
+
   return (
     <Container>
       <Header>
         <Info user={user} createdAt={createdAt} isCurrentUser={isCurrentUser} />
-        <Actions isCurrentUser={isCurrentUser} />
+        <Actions
+          comment={comment}
+          isCurrentUser={isCurrentUser}
+          onDelete={handleDelete}
+          onEdit={handleEdit}
+          onReply={handleReply}
+        />
       </Header>
     </Container>
   )

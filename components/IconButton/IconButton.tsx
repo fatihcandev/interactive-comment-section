@@ -7,7 +7,7 @@ export interface IconButtonProps extends ComponentPropsWithoutRef<'button'> {
   color?: keyof DefaultTheme['colors']
 }
 
-export const IconButton: React.FunctionComponent<IconButtonProps> = ({
+export const IconButton: React.FC<IconButtonProps> = ({
   icon,
   label,
   color,

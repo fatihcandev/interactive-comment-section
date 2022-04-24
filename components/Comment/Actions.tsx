@@ -3,13 +3,22 @@ import styled from 'styled-components'
 
 import { IconButton } from 'components'
 import { Delete, Edit, Reply } from 'components/icons'
+import { Comment } from 'types'
 
 type ActionsProps = {
+  comment: Comment
   isCurrentUser: boolean
+  onDelete: (commentId: number) => void
+  onEdit: () => void
+  onReply: (commentId: number, replyingTo: string) => void
 }
 
-export const Actions: React.FunctionComponent<ActionsProps> = ({
+export const Actions: React.FC<ActionsProps> = ({
+  comment,
   isCurrentUser,
+  onDelete,
+  onEdit,
+  onReply,
 }) => {
   return (
     <Container>
@@ -19,19 +28,15 @@ export const Actions: React.FunctionComponent<ActionsProps> = ({
             icon={<Delete />}
             label="Delete"
             color="softRed"
-            onClick={() => console.log('clicked on delete')}
+            onClick={() => onDelete(comment.id)}
           />
-          <StyledIconButton
-            icon={<Edit />}
-            label="Edit"
-            onClick={() => console.log('clicked on edit')}
-          />
+          <StyledIconButton icon={<Edit />} label="Edit" onClick={onEdit} />
         </DeleteEditActionContainer>
       ) : (
         <StyledIconButton
           icon={<Reply />}
           label="Reply"
-          onClick={() => console.log('clicked on reply')}
+          onClick={() => onReply(comment.id, comment.user.username)}
         />
       )}
     </Container>

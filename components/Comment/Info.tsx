@@ -10,7 +10,7 @@ type InfoProps = {
   isCurrentUser: boolean
 }
 
-export const Info: React.FunctionComponent<InfoProps> = ({
+export const Info: React.FC<InfoProps> = ({
   user,
   createdAt,
   isCurrentUser,
