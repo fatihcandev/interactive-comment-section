@@ -26,9 +26,12 @@ export function mediaBreakpoint({
   styles,
 }: MediaBreakpointFuncArgs): FlattenSimpleInterpolation {
   const minMax = min ? 'min' : 'max'
+  const breakpointValue = min
+    ? breakpoints[breakpoint]
+    : breakpoints[breakpoint] - 1
 
   return css`
-    @media screen and (${minMax}-width: ${breakpoints[breakpoint]}px) {
+    @media screen and (${minMax}-width: ${breakpointValue}px) {
       ${styles}
     }
   `
