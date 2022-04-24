@@ -53,7 +53,7 @@ const Container = styled.div`
     breakpoint: 'md',
     styles: `
       grid-column: 2 / 3;
-      grid-row: 1 / 2;
+      grid-row: 3 / 4;
     `,
   })}
 `
