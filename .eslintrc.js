@@ -2,7 +2,7 @@ module.exports = {
   extends: ['next/core-web-vitals', 'plugin:storybook/recommended', 'prettier'],
   plugins: ['prettier'],
   rules: {
-    'no-unused-vars': 'error',
+    'no-unused-vars': 'warn',
     '@next/next/no-img-element': 'off',
   },
 }
