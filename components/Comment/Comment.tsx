@@ -18,7 +18,7 @@ const CommentComponent: React.FunctionComponent<CommentProps> = ({
   return (
     <Container>
       <Header>
-        <Info user={user} createdAt={createdAt} />
+        <Info user={user} createdAt={createdAt} isCurrentUser={isCurrentUser} />
         <Actions isCurrentUser={isCurrentUser} />
       </Header>
     </Container>
@@ -29,7 +29,7 @@ export { CommentComponent as Comment }
 
 const Container = styled.div`
   padding: 16px;
-  background-color: ${props => props.theme.colors.white};
+  background-color: white;
   border-radius: 8px;
 `
 

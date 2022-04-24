@@ -7,16 +7,21 @@ import { User } from 'types'
 type InfoProps = {
   user: User
   createdAt: Date
+  isCurrentUser: boolean
 }
 
 export const Info: React.FunctionComponent<InfoProps> = ({
   user,
   createdAt,
+  isCurrentUser,
 }) => {
   return (
     <Container>
       <Avatar src={user.image} alt={user.username} />
-      <Username>{user.username}</Username>
+      <UsernameContainer>
+        <Username>{user.username}</Username>
+        {isCurrentUser && <YouBadge>you</YouBadge>}
+      </UsernameContainer>
       <StyledTimeAgo date={createdAt} live={false} />
     </Container>
   )
@@ -34,8 +39,22 @@ const Avatar = styled.img`
   height: 32px;
 `
 
+const UsernameContainer = styled.div`
+  display: flex;
+  align-items: center;
+`
+
 const Username = styled.span`
   font-weight: 500;
+`
+
+const YouBadge = styled.span`
+  margin-left: 8px;
+  padding: 3px 6px;
+  font-size: 13px;
+  color: white;
+  border-radius: 4px;
+  background-color: ${props => props.theme.colors.moderateBlue};
 `
 
 const StyledTimeAgo = styled(TimeAgo)`
