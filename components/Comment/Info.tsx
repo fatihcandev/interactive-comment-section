@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import Image from 'next/image'
 import TimeAgo from 'react-timeago'
 
 import { User } from 'types'
@@ -16,14 +15,7 @@ export const Info: React.FunctionComponent<InfoProps> = ({
 }) => {
   return (
     <Container>
-      <Avatar>
-        <Image
-          src={user.image}
-          layout="fill"
-          objectFit="cover"
-          alt={user.username}
-        />
-      </Avatar>
+      <Avatar src={user.image} alt={user.username} />
       <Username>{user.username}</Username>
       <StyledTimeAgo date={createdAt} live={false} />
     </Container>
@@ -36,10 +28,8 @@ const Container = styled.div`
   gap: 16px;
 `
 
-const Avatar = styled.div`
-  position: relative;
+const Avatar = styled.img`
   border-radius: 50%;
-  overflow: hidden;
   width: 32px;
   height: 32px;
 `
