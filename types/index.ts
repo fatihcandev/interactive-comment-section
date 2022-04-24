@@ -1,20 +1,22 @@
 export type User = {
-  image: {
-    png: string
-    webp: string
-  }
+  image: string
   username: string
 }
 
-export type CommentType = {
+export type Comment = {
   id: number
   content: string
-  createdAt: string
+  createdAt: Date
   score: number
   user: User
-  replies: Reply[]
+  replies?: Reply[]
+  actions?: {
+    reply: () => void
+    delete: () => void
+    edit: () => void
+  }
 }
 
-export interface Reply extends CommentType {
+export interface Reply extends Comment {
   replyingTo: string
 }
