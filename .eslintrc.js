@@ -3,5 +3,6 @@ module.exports = {
   plugins: ['prettier'],
   rules: {
     'no-unused-vars': 'error',
+    '@next/next/no-img-element': 'off',
   },
 }
