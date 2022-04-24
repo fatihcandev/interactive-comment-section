@@ -1,0 +1,37 @@
+import { ReactElement, SVGProps } from 'react'
+import styled, { DefaultTheme } from 'styled-components'
+
+export type IconButtonProps = {
+  icon: ReactElement<SVGProps<SVGSVGElement>>
+  label?: string
+  color: keyof DefaultTheme['colors']
+}
+
+export const IconButton: React.FunctionComponent<IconButtonProps> = ({
+  icon,
+  label,
+  color,
+}) => {
+  return (
+    <Container color={color}>
+      {icon}
+      {label && <Label>{label}</Label>}
+    </Container>
+  )
+}
+
+type ContainerProps = {
+  readonly color: keyof DefaultTheme['colors']
+}
+
+const Container = styled.button<ContainerProps>`
+  display: flex;
+  align-items: center;
+  color: ${props => props.theme.colors[props.color]};
+  font-size: 16px;
+  font-weight: 500;
+`
+
+const Label = styled.span`
+  margin-left: 8px;
+`
