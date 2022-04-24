@@ -10,7 +10,7 @@ export default {
   component: Comment,
   decorators: [
     (story: ComponentStory<typeof Comment>, context) => (
-      <div style={{ maxWidth: 642 }}>
+      <div style={{ maxWidth: 732 }}>
         {story(story.args as CommentProps, context)}
       </div>
     ),
