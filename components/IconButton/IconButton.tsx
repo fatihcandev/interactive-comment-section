@@ -29,13 +29,7 @@ const Container = styled.button<ContainerProps>`
   display: flex;
   align-items: center;
   color: ${props => props.theme.colors[props.color]};
-  font-size: 16px;
   font-weight: 500;
-
-  & svg {
-    position: relative;
-    top: 1px;
-  }
 `
 
 const Label = styled.span`
