@@ -7,7 +7,7 @@ import { Actions } from './Actions'
 import { Info } from './Info'
 import { Vote } from './Vote'
 import { Content } from './Content'
-import { mediaBreakpoint } from 'utils'
+import { getMediaQuery } from 'utils'
 
 export type CommentProps = {
   comment: Comment
@@ -69,7 +69,7 @@ const Container = styled.div`
   background-color: white;
   border-radius: 8px;
 
-  ${mediaBreakpoint({
+  ${getMediaQuery({
     breakpoint: 'md',
     styles: `
       grid-template-columns: auto 1fr;

@@ -1,1 +1,0 @@
-export { mediaBreakpoint } from './mediaBreakpoint'

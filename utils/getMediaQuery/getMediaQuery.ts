@@ -14,17 +14,17 @@ const breakpoints: Breakpoints = {
   xl: 1200,
 }
 
-type MediaBreakpointFuncArgs = {
+type GetMediaQueryFuncArgs = {
   breakpoint: keyof Breakpoints
   styles: string
   min?: boolean
 }
 
-export function mediaBreakpoint({
+export function getMediaQuery({
   breakpoint,
   min = false,
   styles,
-}: MediaBreakpointFuncArgs): FlattenSimpleInterpolation {
+}: GetMediaQueryFuncArgs): FlattenSimpleInterpolation {
   const minMax = min ? 'min' : 'max'
   const breakpointValue = min
     ? breakpoints[breakpoint]

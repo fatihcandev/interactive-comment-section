@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { IconButton } from 'components'
 import { Delete, Edit, Reply } from 'components/icons'
 import { Comment } from 'types'
-import { mediaBreakpoint } from 'utils'
+import { getMediaQuery } from 'utils'
 
 type ActionsProps = {
   comment: Comment
@@ -49,7 +49,7 @@ const Container = styled.div`
   grid-column: 3 / 4;
   grid-row: 1 / 2;
 
-  ${mediaBreakpoint({
+  ${getMediaQuery({
     breakpoint: 'md',
     styles: `
       grid-column: 2 / 3;

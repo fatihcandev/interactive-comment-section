@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { mediaBreakpoint } from 'utils'
+import { getMediaQuery } from 'utils'
 
 type ContentProps = {
   content: string
@@ -17,7 +17,7 @@ const Container = styled.p`
   grid-column: 2 / 4;
   grid-row: 2 / 3;
 
-  ${mediaBreakpoint({
+  ${getMediaQuery({
     breakpoint: 'md',
     styles: `
       grid-column: 1 / 3;

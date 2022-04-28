@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { Minus, Plus } from 'components/icons'
 import { IconButton } from 'components/IconButton'
-import { mediaBreakpoint } from 'utils'
+import { getMediaQuery } from 'utils'
 
 type VoteProps = {
   score: number
@@ -45,7 +45,7 @@ const Container = styled.div`
   grid-column: 1 / 2;
   grid-row: 1 / 3;
 
-  ${mediaBreakpoint({
+  ${getMediaQuery({
     breakpoint: 'md',
     styles: `
       grid-row: 3 / 4;

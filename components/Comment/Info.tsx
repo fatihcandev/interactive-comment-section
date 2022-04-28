@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import TimeAgo from 'react-timeago'
 
 import { User } from 'types'
-import { mediaBreakpoint } from 'utils'
+import { getMediaQuery } from 'utils'
 
 type InfoProps = {
   user: User
@@ -35,7 +35,7 @@ const Container = styled.div`
   grid-column: 2 / 3;
   grid-row: 1 / 2;
 
-  ${mediaBreakpoint({
+  ${getMediaQuery({
     breakpoint: 'md',
     styles: `
       grid-column: 1 / 3;
