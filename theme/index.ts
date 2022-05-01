@@ -1,4 +1,4 @@
-import { DefaultTheme } from 'styled-components'
+import { css, DefaultTheme } from 'styled-components'
 
 export const theme: DefaultTheme = {
   colors: {
@@ -12,4 +12,11 @@ export const theme: DefaultTheme = {
     veryLightGray: '#f5f6fa',
     white: '#ffffff',
   },
+  hoverStyle: css`
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.4;
+    }
+  `,
 }

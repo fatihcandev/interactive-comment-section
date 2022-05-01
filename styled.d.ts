@@ -13,5 +13,6 @@ declare module 'styled-components' {
       veryLightGray: string
       white: string
     }
+    hoverStyle: FlattenSimpleInterpolation
   }
 }

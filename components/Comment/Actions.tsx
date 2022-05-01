@@ -65,9 +65,5 @@ const DeleteEditActionContainer = styled.div`
 `
 
 const StyledIconButton = styled(IconButton)`
-  transition: opacity 0.2s ease;
-
-  &:hover {
-    opacity: 0.4;
-  }
+  ${props => props.theme.hoverStyle}
 `
