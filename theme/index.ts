@@ -1,5 +1,7 @@
 import { css, DefaultTheme } from 'styled-components'
 
+import { getMediaQuery } from 'utils'
+
 export const theme: DefaultTheme = {
   colors: {
     moderateBlue: '#5457b6',
@@ -18,5 +20,18 @@ export const theme: DefaultTheme = {
     &:hover {
       opacity: 0.4;
     }
+  `,
+  baseCommentStyle: css`
+    padding: 24px;
+    background-color: white;
+    border-radius: 8px;
+
+    ${getMediaQuery({
+      breakpoint: 'md',
+      minMax: 'max',
+      styles: `
+        padding: 16px;
+    `,
+    })}
   `,
 }

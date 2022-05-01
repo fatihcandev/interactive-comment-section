@@ -14,5 +14,6 @@ declare module 'styled-components' {
       white: string
     }
     hoverStyle: FlattenSimpleInterpolation
+    baseCommentStyle: FlattenSimpleInterpolation
   }
 }

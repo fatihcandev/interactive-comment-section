@@ -60,14 +60,12 @@ const CommentComponent: React.FC<CommentProps> = ({ comment }) => {
 export { CommentComponent as Comment }
 
 const Container = styled.div`
+  ${props => props.theme.baseCommentStyle}
   display: grid;
   grid-template-columns: auto 1fr auto;
   grid-template-rows: auto 1fr;
   align-items: center;
   column-gap: 24px;
-  padding: 24px;
-  background-color: white;
-  border-radius: 8px;
 
   ${getMediaQuery({
     breakpoint: 'md',
@@ -75,7 +73,6 @@ const Container = styled.div`
     styles: `
       grid-template-columns: auto 1fr;
       grid-template-rows: auto 1fr auto;
-      padding: 16px;
       column-gap: 20px;
     `,
   })}
