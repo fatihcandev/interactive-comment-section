@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import TimeAgo from 'react-timeago'
 
+import { Avatar } from 'components/Avatar'
 import { User } from 'types'
 import { getMediaQuery } from 'utils'
 
@@ -42,12 +43,6 @@ const Container = styled.div`
       grid-column: 1 / 3;
     `,
   })}
-`
-
-const Avatar = styled.img`
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
 `
 
 const UsernameContainer = styled.div`
