@@ -51,6 +51,7 @@ const Container = styled.div`
 
   ${getMediaQuery({
     breakpoint: 'md',
+    minMax: 'max',
     styles: `
       grid-column: 2 / 3;
       grid-row: 3 / 4;

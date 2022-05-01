@@ -30,6 +30,7 @@ describe('getMediaQuery', () => {
     // sm
     query = getMediaQuery({
       breakpoint: 'sm',
+      minMax: 'max',
       styles,
     })
     assertMediaQuery({
@@ -41,7 +42,6 @@ describe('getMediaQuery', () => {
 
     query = getMediaQuery({
       breakpoint: 'sm',
-      min: true,
       styles,
     })
     assertMediaQuery({
@@ -55,6 +55,7 @@ describe('getMediaQuery', () => {
 
     query = getMediaQuery({
       breakpoint: 'md',
+      minMax: 'max',
       styles,
     })
     assertMediaQuery({
@@ -66,7 +67,6 @@ describe('getMediaQuery', () => {
 
     query = getMediaQuery({
       breakpoint: 'md',
-      min: true,
       styles,
     })
     assertMediaQuery({
@@ -80,6 +80,7 @@ describe('getMediaQuery', () => {
 
     query = getMediaQuery({
       breakpoint: 'lg',
+      minMax: 'max',
       styles,
     })
     assertMediaQuery({
@@ -91,7 +92,6 @@ describe('getMediaQuery', () => {
 
     query = getMediaQuery({
       breakpoint: 'lg',
-      min: true,
       styles,
     })
     assertMediaQuery({
@@ -105,6 +105,7 @@ describe('getMediaQuery', () => {
 
     query = getMediaQuery({
       breakpoint: 'xl',
+      minMax: 'max',
       styles,
     })
     assertMediaQuery({
@@ -116,7 +117,6 @@ describe('getMediaQuery', () => {
 
     query = getMediaQuery({
       breakpoint: 'xl',
-      min: true,
       styles,
     })
     assertMediaQuery({

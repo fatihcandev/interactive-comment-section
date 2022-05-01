@@ -47,6 +47,7 @@ const Container = styled.div`
 
   ${getMediaQuery({
     breakpoint: 'md',
+    minMax: 'max',
     styles: `
       grid-row: 3 / 4;
       flex-direction: row;

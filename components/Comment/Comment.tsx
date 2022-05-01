@@ -71,6 +71,7 @@ const Container = styled.div`
 
   ${getMediaQuery({
     breakpoint: 'md',
+    minMax: 'max',
     styles: `
       grid-template-columns: auto 1fr;
       grid-template-rows: auto 1fr auto;
