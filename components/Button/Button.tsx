@@ -8,7 +8,9 @@ export const Button: React.FC<ComponentPropsWithoutRef<'button'>> = ({
 }
 
 const Container = styled.button`
-  padding: 16px 24px;
+  min-width: 104px;
+  text-align: center;
+  padding: 16px 0;
   background-color: ${({ theme }) => theme.colors.moderateBlue};
   border-radius: 8px;
   color: white;
