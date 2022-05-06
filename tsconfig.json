@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ESNext",
     "lib": [
       "dom",
       "dom.iterable",
@@ -19,11 +19,43 @@
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": ".",
+    "paths": {
+      "@/components": [
+        "components/index.ts"
+      ],
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/data": [
+        "data"
+      ],
+      "@/mocks": [
+        "mocks/index.ts"
+      ],
+      "@/pages": [
+        "pages/index.ts"
+      ],
+      "@/theme": [
+        "theme/index.ts"
+      ],
+      "@/types": [
+        "types/index.ts"
+      ],
+      "@/utils": [
+        "utils/index.ts"
+      ],
+      "@/utils/*": [
+        "utils/*"
+      ]
+    }
   },
   "include": [
+    "styled.d.ts",
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "jest.setup.js",
+    "jest.config.js"
   ],
   "exclude": [
     "node_modules"
