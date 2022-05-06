@@ -1,2 +1,6 @@
-export * from './Comment'
-export * from './IconButton'
+export { Avatar } from './Avatar'
+export { Button } from './Button'
+export { Comment } from './Comment'
+export { IconButton } from './IconButton'
+export { Input } from './Input'
+export { NewComment } from './NewComment'

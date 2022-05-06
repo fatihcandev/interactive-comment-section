@@ -3,8 +3,8 @@ import styled from 'styled-components'
 
 import { IconButton } from 'components'
 import { Delete, Edit, Reply } from 'components/icons'
-import { Comment } from 'types'
-import { getMediaQuery } from 'utils'
+import { Comment } from '@/types'
+import { getMediaQuery } from '@/utils'
 
 type ActionsProps = {
   comment: Comment

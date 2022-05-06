@@ -1,4 +1,3 @@
-import { describe, expect } from 'vitest'
 import { css, FlattenSimpleInterpolation } from 'styled-components'
 
 import { getMediaQuery } from './getMediaQuery'

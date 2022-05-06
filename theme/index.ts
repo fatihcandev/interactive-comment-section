@@ -1,6 +1,6 @@
 import { css, DefaultTheme } from 'styled-components'
 
-import { getMediaQuery } from 'utils'
+import { getMediaQuery } from '@/utils'
 
 export const theme: DefaultTheme = {
   colors: {

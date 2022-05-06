@@ -1,1 +1,1 @@
-export { getMediaQuery } from './getMediaQuery'
+export * from './getMediaQuery'

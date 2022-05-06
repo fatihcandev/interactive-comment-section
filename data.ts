@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 
-import { Comment, User } from 'types'
+import { Comment, User } from '@/types'
 
 type Data = {
   currentUser: User
@@ -47,6 +47,7 @@ export const mockData: Data = {
             image: '/images/image-ramsesmiron.png',
             username: 'ramsesmiron',
           },
+          replies: [],
         },
         {
           id: 4,
@@ -59,6 +60,7 @@ export const mockData: Data = {
             image: '/images/image-juliusomo.png',
             username: 'juliusomo',
           },
+          replies: [],
         },
       ],
     },

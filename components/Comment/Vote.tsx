@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Minus, Plus } from 'components/icons'
-import { IconButton } from 'components/IconButton'
-import { getMediaQuery } from 'utils'
+import { IconButton } from 'components'
+import { getMediaQuery } from '@/utils'
 
 type VoteProps = {
   score: number

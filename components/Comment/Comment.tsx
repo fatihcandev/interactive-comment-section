@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { mockData } from 'data'
-import { Comment } from 'types'
+import { mockData } from '@/data'
+import { Comment } from '@/types'
 import { Actions } from './Actions'
 import { Info } from './Info'
 import { Vote } from './Vote'
 import { Content } from './Content'
-import { getMediaQuery } from 'utils'
+import { getMediaQuery } from '@/utils'
 
 export type CommentProps = {
   comment: Comment

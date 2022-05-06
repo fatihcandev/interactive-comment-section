@@ -1,8 +1,9 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import dayjs from 'dayjs'
 
-import { mockData } from 'data'
+import { mockData } from '@/data'
 import { Comment, CommentProps } from './Comment'
+import { NewComment } from '../NewComment'
 
 export default {
   title: 'Comment',
@@ -25,9 +26,8 @@ export default {
 
 const Template: ComponentStory<typeof Comment> = args => <Comment {...args} />
 
-export const Primary = Template.bind({})
-
-Primary.args = {
+export const AnotherUser = Template.bind({})
+AnotherUser.args = {
   comment: mockData.comments[0],
 }
 
@@ -44,5 +44,16 @@ CurrentUser.args = {
       image: '/images/image-juliusomo.png',
       username: 'juliusomo',
     },
+    replies: [],
   },
+}
+
+const NewTemplate: ComponentStory<typeof NewComment> = args => (
+  <NewComment {...args} />
+)
+
+export const New = NewTemplate.bind({})
+
+New.args = {
+  replyingTo: '',
 }

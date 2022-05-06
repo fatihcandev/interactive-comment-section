@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import TimeAgo from 'react-timeago'
 
-import { Avatar } from 'components/Avatar'
-import { User } from 'types'
-import { getMediaQuery } from 'utils'
+import { Avatar } from 'components'
+import { User } from '@/types'
+import { getMediaQuery } from '@/utils'
 
 type InfoProps = {
   user: User

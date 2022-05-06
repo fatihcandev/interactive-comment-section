@@ -9,7 +9,7 @@ export type Comment = {
   createdAt: Date
   score: number
   user: User
-  replies?: Reply[]
+  replies: Reply[]
   actions?: {
     reply: () => void
     delete: () => void

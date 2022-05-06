@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { mockData } from 'data'
+import { mockData } from '@/data'
 
 import { Avatar } from './Avatar'
 

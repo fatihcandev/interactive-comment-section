@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { getMediaQuery } from 'utils'
+import { getMediaQuery } from '@/utils'
 
 type ContentProps = {
   content: string
