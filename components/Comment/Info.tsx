@@ -19,7 +19,10 @@ export const Info: React.FC<InfoProps> = ({
 }) => {
   return (
     <Container>
-      <Avatar src={user.image} alt={user.username} />
+      <Avatar
+        src={user.image || `https://ui-avatars.com/api/?name=${user.username}`}
+        alt={user.username}
+      />
       <UsernameContainer>
         <Username>{user.username}</Username>
         {isCurrentUser && <YouBadge>you</YouBadge>}
