@@ -39,7 +39,7 @@
         "theme/index.ts"
       ],
       "@/types": [
-        "types/index.ts"
+        "types.d.ts"
       ],
       "@/utils": [
         "utils/index.ts"
