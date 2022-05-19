@@ -13,13 +13,19 @@
     "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
+    "@mantine/core": "^4.2.5",
+    "@mantine/form": "^4.2.5",
+    "@mantine/hooks": "^4.2.5",
+    "@mantine/next": "^4.2.5",
+    "@mantine/notifications": "^4.2.5",
     "@supabase/supabase-js": "^1.35.3",
     "dayjs": "^1.11.1",
     "next": "12.1.6",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-timeago": "^6.2.1",
-    "styled-components": "5.3.5"
+    "styled-components": "5.3.5",
+    "zod": "^3.16.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",

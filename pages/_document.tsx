@@ -6,6 +6,9 @@ import Document, {
   DocumentContext,
 } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
+import { ServerStyles, createStylesServer } from '@mantine/next'
+
+const stylesServer = createStylesServer()
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
@@ -27,6 +30,7 @@ export default class MyDocument extends Document {
           <>
             {initialProps.styles}
             {sheet.getStyleElement()}
+            <ServerStyles html={initialProps.html} server={stylesServer} />
           </>
         ),
       }
