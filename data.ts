@@ -15,7 +15,7 @@ export const mockData: Data = {
       createdAt: dayjs().subtract(1, 'month').toDate(),
       score: 12,
       user: {
-        image: '/images/image-amyrobson.png',
+        avatarUrl: '/images/image-amyrobson.png',
         username: 'amyrobson',
         email: 'amyrobson@gmail.com',
       },
@@ -28,7 +28,7 @@ export const mockData: Data = {
       createdAt: dayjs().subtract(2, 'weeks').toDate(),
       score: 5,
       user: {
-        image: '/images/image-maxblagun.png',
+        avatarUrl: '/images/image-maxblagun.png',
         username: 'maxblagun',
         email: 'maxblagun@gmail.com',
       },
@@ -41,7 +41,7 @@ export const mockData: Data = {
           score: 4,
           replyingTo: 'maxblagun',
           user: {
-            image: '/images/image-ramsesmiron.png',
+            avatarUrl: '/images/image-ramsesmiron.png',
             username: 'ramsesmiron',
             email: 'ramsesmiron@gmail.com',
           },
@@ -55,7 +55,7 @@ export const mockData: Data = {
           score: 2,
           replyingTo: 'ramsesmiron',
           user: {
-            image: '/images/image-juliusomo.png',
+            avatarUrl: '/images/image-juliusomo.png',
             username: 'juliusomo',
             email: 'juliusomo@gmail.com',
           },

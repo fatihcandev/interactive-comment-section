@@ -20,7 +20,9 @@ export const Info: React.FC<InfoProps> = ({
   return (
     <Container>
       <Avatar
-        src={user.image || `https://ui-avatars.com/api/?name=${user.username}`}
+        src={
+          user.avatarUrl || `https://ui-avatars.com/api/?name=${user.username}`
+        }
         alt={user.username}
       />
       <UsernameContainer>

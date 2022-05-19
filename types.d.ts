@@ -1,5 +1,5 @@
 export type User = {
-  image?: string
+  avatarUrl?: string
   username: string
   email: string
 }

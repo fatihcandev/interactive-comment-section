@@ -41,7 +41,7 @@ CurrentUser.args = {
     createdAt: dayjs().subtract(2, 'days').toDate(),
     score: 2,
     user: {
-      image: '/images/image-juliusomo.png',
+      avatarUrl: '/images/image-juliusomo.png',
       username: 'juliusomo',
       email: 'juliusomo@gmail.com',
     },

@@ -27,7 +27,7 @@ export const NewComment: React.FC<NewCommentProps> = ({ replyingTo = '' }) => {
   const avatar = useMemo(
     () => (
       <StyledAvatar
-        src={initialComment.user.image}
+        src={initialComment.user.avatarUrl}
         alt={initialComment.user.username}
       />
     ),
