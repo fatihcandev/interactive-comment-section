@@ -1,17 +1,12 @@
 import dayjs from 'dayjs'
 
-import { Comment, User } from '@/types'
+import { Comment } from '@/types'
 
 type Data = {
-  currentUser: User
   comments: Comment[]
 }
 
 export const mockData: Data = {
-  currentUser: {
-    image: '/images/image-juliusomo.png',
-    username: 'juliusomo',
-  },
   comments: [
     {
       id: 1,
@@ -22,6 +17,7 @@ export const mockData: Data = {
       user: {
         image: '/images/image-amyrobson.png',
         username: 'amyrobson',
+        email: 'amyrobson@gmail.com',
       },
       replies: [],
     },
@@ -34,6 +30,7 @@ export const mockData: Data = {
       user: {
         image: '/images/image-maxblagun.png',
         username: 'maxblagun',
+        email: 'maxblagun@gmail.com',
       },
       replies: [
         {
@@ -46,6 +43,7 @@ export const mockData: Data = {
           user: {
             image: '/images/image-ramsesmiron.png',
             username: 'ramsesmiron',
+            email: 'ramsesmiron@gmail.com',
           },
           replies: [],
         },
@@ -59,6 +57,7 @@ export const mockData: Data = {
           user: {
             image: '/images/image-juliusomo.png',
             username: 'juliusomo',
+            email: 'juliusomo@gmail.com',
           },
           replies: [],
         },

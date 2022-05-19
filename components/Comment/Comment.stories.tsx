@@ -43,6 +43,7 @@ CurrentUser.args = {
     user: {
       image: '/images/image-juliusomo.png',
       username: 'juliusomo',
+      email: 'juliusomo@gmail.com',
     },
     replies: [],
   },

@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { mockData } from '@/data'
 import { Comment } from '@/types'
 import { Actions } from './Actions'
 import { Info } from './Info'
@@ -15,7 +14,8 @@ export type CommentProps = {
 
 const CommentComponent: React.FC<CommentProps> = ({ comment }) => {
   const { user, createdAt } = comment
-  const isCurrentUser = mockData.currentUser.username === user.username
+  // todo: make check from backend
+  const isCurrentUser = true
 
   function handleDelete(commentId: number) {
     console.log('clicked on delete', commentId)

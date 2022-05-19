@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { Input } from '../Input'
 import { Avatar } from '../Avatar'
 import { Button } from '../Button'
-import { mockData } from '@/data'
 import { Comment } from '@/types'
 import { getMediaQuery, sendNewComment, sendReply } from '@/utils'
 
@@ -17,7 +16,10 @@ export const initialComment: Comment = {
   content: '',
   createdAt: new Date(),
   score: 0,
-  user: mockData.currentUser,
+  user: {
+    email: 'fatih@gmail.com',
+    username: 'fatih',
+  },
   replies: [],
 }
 
