@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { IconButton } from 'components'
+import { IconButton } from '@/components/IconButton'
 import { Delete, Edit, Reply } from 'components/icons'
 import { Comment } from '@/types'
 import { getMediaQuery } from '@/utils'
@@ -9,9 +9,9 @@ import { getMediaQuery } from '@/utils'
 type ActionsProps = {
   comment: Comment
   isCurrentUser: boolean
-  onDelete: (commentId: number) => void
+  onDelete: (commentId: string) => void
   onEdit: () => void
-  onReply: (commentId: number, replyingTo: string) => void
+  onReply: (commentId: string, replyingTo: string) => void
 }
 
 export const Actions: React.FC<ActionsProps> = ({

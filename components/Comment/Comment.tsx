@@ -17,7 +17,7 @@ const CommentComponent: React.FC<CommentProps> = ({ comment }) => {
   // todo: make check from backend
   const isCurrentUser = true
 
-  function handleDelete(commentId: number) {
+  function handleDelete(commentId: string) {
     console.log('clicked on delete', commentId)
   }
 
@@ -25,7 +25,7 @@ const CommentComponent: React.FC<CommentProps> = ({ comment }) => {
     console.log('clicked on edit')
   }
 
-  function handleReply(commentId: number, replyingTo: string) {
+  function handleReply(commentId: string, replyingTo: string) {
     console.log('clicked on reply', commentId, replyingTo)
   }
 

@@ -35,12 +35,13 @@ export const CurrentUser = Template.bind({})
 
 CurrentUser.args = {
   comment: {
-    id: 4,
+    id: '4',
     content:
       "I couldn't agree more with this. Everything moves so fast and it always seems like everyone knows the newest library/framework. But the fundamentals are what stay constant.",
     createdAt: dayjs().subtract(2, 'days').toDate(),
     score: 2,
     user: {
+      id: '1',
       avatarUrl: '/images/image-juliusomo.png',
       username: 'juliusomo',
       email: 'juliusomo@gmail.com',

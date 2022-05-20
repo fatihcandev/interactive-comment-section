@@ -1,11 +1,12 @@
 export type User = {
+  id: string
   avatarUrl?: string
   username: string
   email: string
 }
 
 export type Comment = {
-  id: number
+  id: string
   content: string
   createdAt: Date
   score: number
