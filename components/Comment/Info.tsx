@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import TimeAgo from 'react-timeago'
 
-import { Avatar } from 'components'
+import { Avatar } from '@/components/Avatar'
 import { User } from '@/types'
 import { getMediaQuery } from '@/utils'
 

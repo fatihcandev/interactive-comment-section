@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Minus, Plus } from 'components/icons'
-import { IconButton } from 'components'
+import { IconButton } from '@/components/IconButton'
 import { getMediaQuery } from '@/utils'
 
 type VoteProps = {
