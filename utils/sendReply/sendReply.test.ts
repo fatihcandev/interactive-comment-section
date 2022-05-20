@@ -1,21 +1,18 @@
 import { getComments } from '../getComments'
 import { sendNewComment } from '../sendNewComment'
 import { sendReply } from './sendReply'
-import { comment } from '@/mocks'
+import { mockComment } from '@/mocks'
 import { Reply } from '@/types'
 
 describe('sendReply', () => {
   it('should save the given reply', () => {
-    const replyingTo = comment.user.username
+    const replyingTo = mockComment.user.username
     const reply: Reply = {
-      ...comment,
+      ...mockComment,
       content: 'test reply',
-      user: {
-        username: 'test reply user',
-      },
       replyingTo,
     }
-    sendNewComment(comment)
+    sendNewComment(mockComment)
     sendReply({
       reply,
       replyingTo,

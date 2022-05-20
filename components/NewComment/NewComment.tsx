@@ -4,34 +4,28 @@ import styled from 'styled-components'
 import { Input } from '../Input'
 import { Avatar } from '../Avatar'
 import { Button } from '../Button'
-import { Comment } from '@/types'
+import { mockComment } from '@/mocks'
+import { Comment, User } from '@/types'
 import { getMediaQuery, sendNewComment, sendReply } from '@/utils'
 
 export type NewCommentProps = {
   replyingTo?: string
 }
 
-export const initialComment: Comment = {
-  id: new Date().getTime(),
-  content: '',
-  createdAt: new Date(),
-  score: 0,
-  user: {
-    email: 'fatih@gmail.com',
-    username: 'fatih',
-  },
-  replies: [],
-}
-
 export const NewComment: React.FC<NewCommentProps> = ({ replyingTo = '' }) => {
-  const avatar = useMemo(
-    () => (
-      <StyledAvatar
-        src={initialComment.user.avatarUrl}
-        alt={initialComment.user.username}
-      />
-    ),
+  // todo: get the current user session
+  const user: User = useMemo(
+    () => ({
+      id: '1',
+      username: 'fatihcan',
+      email: 'fatihcan@gmail.com',
+      avatarUrl: '',
+    }),
     []
+  )
+  const avatar = useMemo(
+    () => <StyledAvatar src={user.avatarUrl} alt={user.username} />,
+    [user]
   )
   const button = useMemo(
     () => (
@@ -56,8 +50,9 @@ export const NewComment: React.FC<NewCommentProps> = ({ replyingTo = '' }) => {
       const formData = new FormData(e.target as HTMLFormElement)
       const content = formData.get('content') as string
       const comment: Comment = {
-        ...initialComment,
+        ...mockComment,
         content,
+        user,
       }
 
       try {
@@ -80,7 +75,7 @@ export const NewComment: React.FC<NewCommentProps> = ({ replyingTo = '' }) => {
         // todo: show error in toast
       }
     },
-    [replyingTo]
+    [replyingTo, user]
   )
 
   return (
