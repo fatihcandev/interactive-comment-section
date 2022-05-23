@@ -7,17 +7,14 @@ import { showNotification } from '@mantine/notifications'
 
 import { Link } from '@/components/Link'
 import { LoginSignUpContainer } from '@/components/LoginSignUpContainer'
+import { PasswordInput } from '@/components/PasswordInput'
 import { TextInput } from '@/components/TextInput'
 import { SignUpFormSchema, signUpFormSchema } from '@/utils/signUpFormSchema'
 import { supabase } from '@/utils/supabaseClient'
 import { User } from '@/types'
-import { PasswordInput } from '@/components/PasswordInput'
 
 const SignUp: NextPage = () => {
   const [loading, setLoading] = useState(false)
-
-  const { push } = useRouter()
-
   const form = useForm<SignUpFormSchema>({
     schema: zodResolver(signUpFormSchema),
     initialValues: {
@@ -26,6 +23,7 @@ const SignUp: NextPage = () => {
       password: '',
     },
   })
+  const { push } = useRouter()
 
   async function handleSubmit(values: SignUpFormSchema) {
     try {
