@@ -66,6 +66,7 @@ const Container = styled.div`
   grid-template-rows: auto 1fr;
   align-items: center;
   column-gap: 24px;
+  max-width: 732px;
 
   ${getMediaQuery({
     breakpoint: 'md',
