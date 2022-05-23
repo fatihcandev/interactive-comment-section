@@ -1,4 +1,5 @@
 export { getComments } from './getComments'
 export { getMediaQuery } from './getMediaQuery'
+export { mockNextRouter, clearMockNextRouter } from './mockNextRouter'
 export { sendNewComment } from './sendNewComment'
 export { sendReply } from './sendReply'
