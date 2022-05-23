@@ -3,16 +3,11 @@ import { useEffect, useMemo, useState } from 'react'
 import { supabase } from '@/utils/supabaseClient'
 import { User } from '@/types'
 
-export const useCurrentUser = (): {
-  user: User
-} => {
+type HookReturnType = { user: User }
+
+export const useCurrentUser = (): HookReturnType => {
   const currentUserId = useMemo(() => supabase.auth.user()?.id, [])
-  const [user, setUser] = useState<User>({
-    id: '',
-    username: '',
-    email: '',
-    avatar_url: '',
-  })
+  const [user, setUser] = useState<Partial<User>>({})
 
   useEffect(() => {
     if (!currentUserId) return
@@ -28,5 +23,5 @@ export const useCurrentUser = (): {
 
   return {
     user,
-  }
+  } as HookReturnType
 }
