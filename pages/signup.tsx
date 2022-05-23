@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import type { NextPage } from 'next'
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { Button, Group, Text } from '@mantine/core'
 import { useForm, zodResolver } from '@mantine/form'
 import { showNotification } from '@mantine/notifications'
-import styled from 'styled-components'
 
 import { Link } from '@/components/Link'
+import { LoginSignUpContainer } from '@/components/LoginSignUpContainer'
 import { TextInput } from '@/components/TextInput'
 import { SignUpFormSchema, signUpFormSchema } from '@/utils/signUpFormSchema'
 import { supabase } from '@/utils/supabaseClient'
@@ -66,55 +65,41 @@ const SignUp: NextPage = () => {
   }
 
   return (
-    <Container>
-      <Head>
-        <title>Sign Up</title>
-      </Head>
-      <Form onSubmit={form.onSubmit(handleSubmit)}>
-        <Group spacing="sm">
-          <TextInput
-            label="Email"
-            loading={loading}
-            {...form.getInputProps('email')}
-          />
-          <TextInput
-            label="Username"
-            loading={loading}
-            {...form.getInputProps('username')}
-          />
-          <PasswordInput
-            loading={loading}
-            {...form.getInputProps('password')}
-          />
-          <Button type="submit" disabled={loading} loading={loading} fullWidth>
-            Sign up
-          </Button>
-          <Group spacing="xs">
-            <Text size="sm">Already have an account?</Text>
-            <Link
-              href="/login"
-              anchorProps={{
-                size: 'sm',
-              }}
-            >
-              Login
-            </Link>
-          </Group>
+    <LoginSignUpContainer
+      title="Sign Up"
+      formProps={{
+        onSubmit: form.onSubmit(handleSubmit),
+      }}
+    >
+      <Group spacing="sm">
+        <TextInput
+          label="Email"
+          loading={loading}
+          {...form.getInputProps('email')}
+        />
+        <TextInput
+          label="Username"
+          loading={loading}
+          {...form.getInputProps('username')}
+        />
+        <PasswordInput loading={loading} {...form.getInputProps('password')} />
+        <Button type="submit" disabled={loading} loading={loading} fullWidth>
+          Sign up
+        </Button>
+        <Group spacing="xs">
+          <Text size="sm">Already have an account?</Text>
+          <Link
+            href="/login"
+            anchorProps={{
+              size: 'sm',
+            }}
+          >
+            Login
+          </Link>
         </Group>
-      </Form>
-    </Container>
+      </Group>
+    </LoginSignUpContainer>
   )
 }
 
 export default SignUp
-
-const Container = styled.div`
-  display: flex;
-  min-height: 100vh;
-`
-
-const Form = styled.form`
-  width: 100%;
-  max-width: 340px;
-  margin: auto;
-`
