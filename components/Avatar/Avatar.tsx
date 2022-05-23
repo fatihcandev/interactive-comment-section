@@ -1,12 +1,6 @@
-import React, { ComponentPropsWithoutRef } from 'react'
-import styled from 'styled-components'
+import React from 'react'
+import { Avatar as MAvatar, AvatarProps } from '@mantine/core'
 
-export const Avatar: React.FC<ComponentPropsWithoutRef<'img'>> = props => {
-  return <Container {...props} />
+export const Avatar: React.FC<AvatarProps<'div'>> = props => {
+  return <MAvatar size={32} radius="xl" {...props} />
 }
-
-const Container = styled.img`
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-`
