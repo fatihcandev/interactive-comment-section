@@ -5,16 +5,23 @@ import { useRouter } from 'next/router'
 import { Button } from '@mantine/core'
 
 import { supabase } from '@/utils/supabaseClient'
+import { NewComment } from '@/components/NewComment'
 
 const Home: NextPage = () => {
   const { push } = useRouter()
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange((_event, sessionInfo) => {
-      if (!sessionInfo) {
-        push('/login')
+    const authSubscription = supabase.auth.onAuthStateChange(
+      (_event, sessionInfo) => {
+        if (!sessionInfo) {
+          push('/login')
+        }
       }
-    })
+    )
+
+    return () => {
+      authSubscription.data?.unsubscribe()
+    }
   }, [push])
 
   return (
@@ -24,6 +31,7 @@ const Home: NextPage = () => {
       </Head>
       <h1>Home</h1>
       <Button onClick={() => supabase.auth.signOut()}>Log out</Button>
+      <NewComment />
     </div>
   )
 }
