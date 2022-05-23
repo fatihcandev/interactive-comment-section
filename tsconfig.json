@@ -35,8 +35,8 @@
       "@/mocks": [
         "mocks/index.ts"
       ],
-      "@/pages": [
-        "pages/index.ts"
+      "@/pages/*": [
+        "pages/*"
       ],
       "@/theme": [
         "theme/index.ts"
