@@ -1,11 +1,12 @@
 import { FormEventHandler, useCallback, useMemo } from 'react'
 import styled from 'styled-components'
 
-import { Input } from '../Input'
 import { Avatar } from '../Avatar'
 import { Button } from '../Button'
+import { Input } from '../Input'
+import { useCurrentUser } from '@/hooks'
 import { mockComment } from '@/mocks'
-import { Comment, User } from '@/types'
+import { Comment } from '@/types'
 import { getMediaQuery, sendNewComment, sendReply } from '@/utils'
 
 export type NewCommentProps = {
@@ -13,18 +14,9 @@ export type NewCommentProps = {
 }
 
 export const NewComment: React.FC<NewCommentProps> = ({ replyingTo = '' }) => {
-  // todo: get the current user session
-  const user: User = useMemo(
-    () => ({
-      id: '1',
-      username: 'fatihcan',
-      email: 'fatihcan@gmail.com',
-      avatarUrl: '',
-    }),
-    []
-  )
+  const { user } = useCurrentUser()
   const avatar = useMemo(
-    () => <StyledAvatar src={user.avatarUrl} alt={user.username} />,
+    () => <StyledAvatar src={user?.avatar_url} alt={user?.username} />,
     [user]
   )
   const button = useMemo(
@@ -93,6 +85,7 @@ const Container = styled.form`
   grid-template-columns: auto 1fr auto;
   gap: 16px;
   align-items: flex-start;
+  max-width: 732px;
 
   ${getMediaQuery({
     breakpoint: 'sm',
@@ -104,7 +97,7 @@ const Container = styled.form`
   })}
 `
 
-const StyledAvatar = styled(Avatar)`
+const StyledAvatar: typeof Avatar = styled(Avatar)`
   ${getMediaQuery({
     breakpoint: 'sm',
     minMax: 'max',
