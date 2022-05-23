@@ -12,11 +12,6 @@ export type Comment = {
   score: number
   user: User
   replies: Reply[]
-  actions?: {
-    reply: () => void
-    delete: () => void
-    edit: () => void
-  }
 }
 
 export interface Reply extends Comment {
