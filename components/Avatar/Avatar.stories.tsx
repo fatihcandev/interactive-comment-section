@@ -8,7 +8,7 @@ export default {
   component: Avatar,
   argTypes: {
     src: {
-      options: mockData.comments.map(comment => comment.user.avatarUrl),
+      options: mockData.comments.map(comment => comment.user.avatar_url),
       control: { type: 'radio' },
     },
   },
@@ -19,5 +19,5 @@ const Template: ComponentStory<typeof Avatar> = args => <Avatar {...args} />
 export const Primary = Template.bind({})
 
 Primary.args = {
-  src: mockData.comments[0].user.avatarUrl,
+  src: mockData.comments[0].user.avatar_url,
 }

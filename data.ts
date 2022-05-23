@@ -16,7 +16,7 @@ export const mockData: Data = {
       score: 12,
       user: {
         id: '1',
-        avatarUrl: '/images/image-amyrobson.png',
+        avatar_url: '/images/image-amyrobson.png',
         username: 'amyrobson',
         email: 'amyrobson@gmail.com',
       },
@@ -30,7 +30,7 @@ export const mockData: Data = {
       score: 5,
       user: {
         id: '2',
-        avatarUrl: '/images/image-maxblagun.png',
+        avatar_url: '/images/image-maxblagun.png',
         username: 'maxblagun',
         email: 'maxblagun@gmail.com',
       },
@@ -44,7 +44,7 @@ export const mockData: Data = {
           replyingTo: 'maxblagun',
           user: {
             id: '3',
-            avatarUrl: '/images/image-ramsesmiron.png',
+            avatar_url: '/images/image-ramsesmiron.png',
             username: 'ramsesmiron',
             email: 'ramsesmiron@gmail.com',
           },
@@ -59,7 +59,7 @@ export const mockData: Data = {
           replyingTo: 'ramsesmiron',
           user: {
             id: '4',
-            avatarUrl: '/images/image-juliusomo.png',
+            avatar_url: '/images/image-juliusomo.png',
             username: 'juliusomo',
             email: 'juliusomo@gmail.com',
           },

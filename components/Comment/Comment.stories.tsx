@@ -42,7 +42,7 @@ CurrentUser.args = {
     score: 2,
     user: {
       id: '1',
-      avatarUrl: '/images/image-juliusomo.png',
+      avatar_url: '/images/image-juliusomo.png',
       username: 'juliusomo',
       email: 'juliusomo@gmail.com',
     },
