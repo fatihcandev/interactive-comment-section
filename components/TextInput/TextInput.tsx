@@ -8,10 +8,10 @@ export type TextInputProps = MTextInputProps & {
   loading?: boolean
 }
 
-export const TextInput: React.FC<TextInputProps> = props => {
+export const TextInput: React.FC<TextInputProps> = ({ loading, ...props }) => {
   return (
     <MTextInput
-      disabled={props.loading}
+      disabled={loading}
       sx={{
         width: '100%',
       }}
