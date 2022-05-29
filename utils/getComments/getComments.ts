@@ -1,12 +1,22 @@
+import { showNotification } from '@mantine/notifications'
+import { supabase } from '../supabaseClient'
 import { Comment } from '@/types'
 
-export function getComments(): Comment[] {
+export async function getComments(): Promise<Comment[]> {
   try {
-    const comments = localStorage.getItem('comments')
-    if (!comments) return []
+    const { data: comments, error } = await supabase
+      .from<Comment>('comments')
+      .select('*')
 
-    return JSON.parse(comments)
-  } catch (error) {
-    throw new Error(`Error getting comments: ${error}`)
+    if (error) throw error
+
+    return comments
+  } catch (error: any) {
+    showNotification({
+      title: 'Something went wrong',
+      message: error.error_description || error.message,
+      color: 'red',
+    })
+    return []
   }
 }

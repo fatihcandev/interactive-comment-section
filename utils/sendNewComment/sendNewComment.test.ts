@@ -1,13 +1,15 @@
-import { mockComment } from '@/mocks'
-import { getComments } from '../getComments'
-import { sendNewComment } from './sendNewComment'
+import { mockComment, mockSendNewComment } from '@/mocks'
+
+jest.mock('@/utils')
 
 describe('sendNewComment', () => {
-  it('should save the given comment', () => {
-    sendNewComment(mockComment)
-    const comments = getComments()
-    expect(comments).toHaveLength(1)
-    expect(comments[0].id).toEqual(mockComment.id)
-    localStorage.removeItem('comments')
+  it('should save the given comment', async () => {
+    mockSendNewComment.mockResolvedValue({
+      addedComment: mockComment,
+    })
+    const { addedComment } = await mockSendNewComment(mockComment)
+    expect(addedComment).not.toBeNull()
+    expect(mockSendNewComment).toHaveBeenCalledTimes(1)
+    expect(mockSendNewComment).toHaveBeenCalledWith(mockComment)
   })
 })

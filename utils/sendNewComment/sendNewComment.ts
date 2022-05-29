@@ -1,12 +1,29 @@
-import { Comment } from '@/types'
-import { getComments } from '../getComments'
+import { showNotification } from '@mantine/notifications'
 
-export function sendNewComment(comment: Comment) {
-  const comments = getComments()
-  const updatedComments = [...comments, comment]
+import { supabase } from '../supabaseClient'
+import { CommentPayload } from '@/types'
+
+export const sendNewComment = async (
+  comment: CommentPayload
+): Promise<{
+  addedComment: CommentPayload | null
+}> => {
   try {
-    localStorage.setItem('comments', JSON.stringify(updatedComments))
-  } catch (error) {
-    throw new Error(`Error saving comment: ${error}`)
+    const { data, error } = await supabase
+      .from<CommentPayload>('comments')
+      .insert([comment])
+
+    if (error) throw error
+
+    const [addedComment] = data
+
+    return { addedComment }
+  } catch (error: any) {
+    showNotification({
+      title: 'Something went wrong',
+      message: error.error_description || error.message,
+      color: 'red',
+    })
+    return { addedComment: null }
   }
 }

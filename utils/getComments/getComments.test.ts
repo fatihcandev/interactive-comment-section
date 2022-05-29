@@ -1,17 +1,17 @@
-import { mockComment } from '@/mocks'
-import { getComments } from './getComments'
+import { mockComment, mockGetComments } from '@/mocks'
+
+jest.mock('@/utils')
 
 describe('getComments', () => {
-  it('should return an array of comments', () => {
-    localStorage.setItem('comments', JSON.stringify([mockComment]))
-    const comments = getComments()
+  it('should return an array of comments', async () => {
+    mockGetComments.mockResolvedValue([mockComment])
+    const comments = await mockGetComments()
     expect(comments).toHaveLength(1)
-    expect(comments[0].id).toEqual(mockComment.id)
-    localStorage.removeItem('comments')
   })
 
-  it('should return an empty array if no comments are found in storage', () => {
-    const comments = getComments()
+  it('should return an empty array if there is no comments', async () => {
+    mockGetComments.mockResolvedValue([])
+    const comments = await mockGetComments()
     expect(comments).toHaveLength(0)
   })
 })
