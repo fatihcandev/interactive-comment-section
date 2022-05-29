@@ -4,17 +4,19 @@ import styled from 'styled-components'
 import { Avatar } from '../Avatar'
 import { Button } from '../Button'
 import { Input } from '../Input'
-import { useCurrentUser } from '@/hooks'
-import { mockComment } from '@/mocks'
-import { Comment } from '@/types'
-import { getMediaQuery, sendNewComment, sendReply } from '@/utils'
+import { useUser } from '@/hooks'
+import { CommentPayload } from '@/types'
+import { getMediaQuery, sendNewComment } from '@/utils'
 
-export type NewCommentProps = {
+export type NewCommentProps = React.ComponentPropsWithoutRef<'form'> & {
   replyingTo?: string
 }
 
-export const NewComment: React.FC<NewCommentProps> = ({ replyingTo = '' }) => {
-  const { user } = useCurrentUser()
+export const NewComment: React.FC<NewCommentProps> = ({
+  replyingTo = '',
+  ...props
+}) => {
+  const { user } = useUser()
   const avatar = useMemo(
     () => <StyledAvatar src={user?.avatar_url} alt={user?.username} />,
     [user]
@@ -37,41 +39,35 @@ export const NewComment: React.FC<NewCommentProps> = ({ replyingTo = '' }) => {
   )
 
   const handleSend: FormEventHandler<HTMLFormElement> = useCallback(
-    e => {
+    async e => {
       e.preventDefault()
       const formData = new FormData(e.target as HTMLFormElement)
       const content = formData.get('content') as string
-      const comment: Comment = {
-        ...mockComment,
+      const comment: CommentPayload = {
         content,
-        user,
+        user_id: user?.id,
       }
 
-      try {
-        if (replyingTo) {
-          return sendReply({
-            replyingTo,
-            reply: {
-              ...comment,
-              replyingTo,
-            },
-          })
-        }
+      // if (replyingTo) {
+      //   return sendReply({
+      //     replyingTo,
+      //     reply: {
+      //       ...comment,
+      //       replyingTo,
+      //     },
+      //   })
+      // }
 
-        sendNewComment(comment)
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        e.target.reset()
-      } catch (error) {
-        console.log(error)
-        // todo: show error in toast
-      }
+      await sendNewComment(comment)
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      e.target.reset()
     },
-    [replyingTo, user]
+    [user]
   )
 
   return (
-    <Container onSubmit={handleSend}>
+    <Container onSubmit={handleSend} {...props}>
       {avatar}
       {input}
       {button}
@@ -85,6 +81,7 @@ const Container = styled.form`
   grid-template-columns: auto 1fr auto;
   gap: 16px;
   align-items: flex-start;
+  width: 100%;
   max-width: 732px;
 
   ${getMediaQuery({
