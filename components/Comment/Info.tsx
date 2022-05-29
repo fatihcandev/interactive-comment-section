@@ -8,7 +8,7 @@ import { getMediaQuery } from '@/utils'
 
 type InfoProps = {
   user: User
-  createdAt: Date
+  createdAt: string
   isCurrentUser: boolean
 }
 

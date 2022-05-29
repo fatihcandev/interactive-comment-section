@@ -1,21 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { Skeleton } from '@mantine/core'
 
-import { Comment } from '@/types'
 import { Actions } from './Actions'
 import { Info } from './Info'
 import { Vote } from './Vote'
 import { Content } from './Content'
+import { useUser } from '@/hooks'
+import { Comment as CommentType } from '@/types'
 import { getMediaQuery } from '@/utils'
 
 export type CommentProps = {
-  comment: Comment
+  comment: CommentType
 }
 
-const CommentComponent: React.FC<CommentProps> = ({ comment }) => {
-  const { user, createdAt } = comment
-  // todo: make check from backend
-  const isCurrentUser = true
+const Comment: React.FC<CommentProps> = ({ comment }) => {
+  const { user, currentUserId } = useUser(comment.user_id)
+  const [isCurrentUser, setIsCurrentUser] = useState<boolean | null>(null)
+
+  useEffect(() => {
+    if (!currentUserId) return
+
+    setIsCurrentUser(currentUserId === comment.user_id)
+  }, [comment.user_id, currentUserId])
 
   function handleDelete(commentId: string) {
     console.log('clicked on delete', commentId)
@@ -44,20 +51,31 @@ const CommentComponent: React.FC<CommentProps> = ({ comment }) => {
         onUpvote={handleUpvote}
         onDownvote={handleDownvote}
       />
-      <Info user={user} createdAt={createdAt} isCurrentUser={isCurrentUser} />
-      <Actions
-        comment={comment}
-        isCurrentUser={isCurrentUser}
-        onDelete={handleDelete}
-        onEdit={handleEdit}
-        onReply={handleReply}
-      />
+      {!user || isCurrentUser === null ? (
+        <Skeleton width="100%" height={20} />
+      ) : (
+        <>
+          <Actions
+            commentId={comment.id}
+            commentUsername={user.username}
+            isCurrentUser={isCurrentUser}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+            onReply={handleReply}
+          />
+          <Info
+            user={user}
+            createdAt={comment.created_at}
+            isCurrentUser={isCurrentUser}
+          />
+        </>
+      )}
       <Content content={comment.content} />
     </Container>
   )
 }
 
-export { CommentComponent as Comment }
+export { Comment }
 
 const Container = styled.div`
   ${props => props.theme.baseCommentStyle}
@@ -66,7 +84,8 @@ const Container = styled.div`
   grid-template-rows: auto 1fr;
   align-items: center;
   column-gap: 24px;
-  max-width: 732px;
+  height: max-content;
+  width: 100%;
 
   ${getMediaQuery({
     breakpoint: 'md',

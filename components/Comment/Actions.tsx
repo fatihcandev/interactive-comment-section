@@ -3,11 +3,11 @@ import styled from 'styled-components'
 
 import { IconButton } from '@/components/IconButton'
 import { Delete, Edit, Reply } from 'components/icons'
-import { Comment } from '@/types'
 import { getMediaQuery } from '@/utils'
 
 type ActionsProps = {
-  comment: Comment
+  commentId: string
+  commentUsername: string
   isCurrentUser: boolean
   onDelete: (commentId: string) => void
   onEdit: () => void
@@ -15,7 +15,8 @@ type ActionsProps = {
 }
 
 export const Actions: React.FC<ActionsProps> = ({
-  comment,
+  commentId,
+  commentUsername,
   isCurrentUser,
   onDelete,
   onEdit,
@@ -29,7 +30,7 @@ export const Actions: React.FC<ActionsProps> = ({
             icon={<Delete />}
             label="Delete"
             color="softRed"
-            onClick={() => onDelete(comment.id)}
+            onClick={() => onDelete(commentId)}
           />
           <StyledIconButton icon={<Edit />} label="Edit" onClick={onEdit} />
         </DeleteEditActionContainer>
@@ -37,7 +38,7 @@ export const Actions: React.FC<ActionsProps> = ({
         <StyledIconButton
           icon={<Reply />}
           label="Reply"
-          onClick={() => onReply(comment.id, comment.user.username)}
+          onClick={() => onReply(commentId, commentUsername)}
         />
       )}
     </Container>

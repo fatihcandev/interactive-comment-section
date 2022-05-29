@@ -6,7 +6,7 @@ import { IconButton } from '@/components/IconButton'
 import { getMediaQuery } from '@/utils'
 
 type VoteProps = {
-  score: number
+  score: number | null
   onUpvote: () => void
   onDownvote: () => void
   className?: string
@@ -21,7 +21,7 @@ export const Vote: React.FC<VoteProps> = ({
   return (
     <Container className={className}>
       <VoteButton icon={<Plus />} color="lightGrayishBlue" onClick={onUpvote} />
-      {score}
+      {score ?? 0}
       <VoteButton
         icon={<Minus />}
         color="lightGrayishBlue"
