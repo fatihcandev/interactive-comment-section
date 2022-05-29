@@ -8,10 +8,15 @@ export type User = {
 export type Comment = {
   id: string
   content: string
-  createdAt: Date
-  score: number
-  user: User
+  created_at: string
+  score: number | null
+  user_id: string
   replies: Reply[]
+}
+
+export type CommentPayload = {
+  content: string
+  user_id?: string
 }
 
 export interface Reply extends Comment {
