@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import { Avatar } from '../Avatar'
 import { Input } from '../Input'
-import { useUser } from '@/hooks'
+import { useCurrentUser } from '@/hooks'
 import { Comment, CommentPayload } from '@/types'
 import { getMediaQuery, sendNewComment } from '@/utils'
 
@@ -19,10 +19,10 @@ export const NewComment: React.FC<NewCommentProps> = ({
   ...props
 }) => {
   const [isAddingComment, setIsAddingComment] = useState(false)
-  const { user } = useUser()
+  const { currentUser } = useCurrentUser()
 
   const handleSend: FormEventHandler<HTMLFormElement> = async e => {
-    if (!user) return
+    if (!currentUser) return
 
     setIsAddingComment(true)
     e.preventDefault()
@@ -30,7 +30,7 @@ export const NewComment: React.FC<NewCommentProps> = ({
     const content = formData.get('content') as string
     const comment: CommentPayload = {
       content,
-      user,
+      user: currentUser,
     }
 
     // if (replyingTo) {
@@ -54,7 +54,7 @@ export const NewComment: React.FC<NewCommentProps> = ({
 
   return (
     <Container onSubmit={handleSend} {...props}>
-      <StyledAvatar src={user?.avatarUrl} alt={user?.username} />
+      <StyledAvatar src={currentUser?.avatarUrl} alt={currentUser?.username} />
       <StyledInput
         name="content"
         placeholder={replyingTo ? `@${replyingTo}` : 'Add a comment...'}

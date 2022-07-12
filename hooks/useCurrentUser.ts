@@ -3,26 +3,24 @@ import { useEffect, useState } from 'react'
 import { supabase } from '@/utils/supabaseClient'
 import { User } from '@/types'
 
-type HookReturnType = { user: User | null; currentUserId?: string }
+type HookReturnType = { currentUser: User | null }
 
-export const useUser = (id?: string): HookReturnType => {
-  const currentUserId = supabase.auth.user()?.id
+const useCurrentUser = (): HookReturnType => {
   const [user, setUser] = useState<User | null>(null)
 
   useEffect(() => {
-    if (!currentUserId) return
-
     supabase
       .from<User>('users')
       .select('*')
-      .eq('id', id || currentUserId)
+      .eq('id', supabase.auth.user()?.id)
       .then(res => {
         if (res.data) setUser(res.data[0])
       })
-  }, [id, currentUserId])
+  }, [])
 
   return {
-    user,
-    currentUserId,
+    currentUser: user,
   } as HookReturnType
 }
+
+export default useCurrentUser
