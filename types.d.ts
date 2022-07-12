@@ -1,6 +1,6 @@
 export type User = {
   id: string
-  avatar_url?: string
+  avatarUrl?: string
   username: string
   email: string
 }
@@ -8,15 +8,15 @@ export type User = {
 export type Comment = {
   id: string
   content: string
-  created_at: string
+  createdAt: string
   score: number | null
-  user_id: string
+  user: User
   replies: Reply[]
 }
 
 export type CommentPayload = {
   content: string
-  user_id?: string
+  user: User
 }
 
 export interface Reply extends Comment {

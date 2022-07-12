@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import dayjs from 'dayjs'
 
 import { mockData } from '@/data'
-import { Comment, CommentProps } from './Comment'
+import { Comment } from './Comment'
 import { NewComment } from '../NewComment'
 
 export default {
@@ -10,9 +10,7 @@ export default {
   component: Comment,
   decorators: [
     (story: ComponentStory<typeof Comment>, context) => (
-      <div style={{ maxWidth: 732 }}>
-        {story(story.args as CommentProps, context)}
-      </div>
+      <div style={{ maxWidth: 732 }}>{story(story.args, context)}</div>
     ),
   ],
   argTypes: {
@@ -38,11 +36,11 @@ CurrentUser.args = {
     id: '4',
     content:
       "I couldn't agree more with this. Everything moves so fast and it always seems like everyone knows the newest library/framework. But the fundamentals are what stay constant.",
-    createdAt: dayjs().subtract(2, 'days').toDate(),
+    createdAt: dayjs().subtract(2, 'days').toISOString(),
     score: 2,
     user: {
       id: '1',
-      avatar_url: '/images/image-juliusomo.png',
+      avatarUrl: '/images/image-juliusomo.png',
       username: 'juliusomo',
       email: 'juliusomo@gmail.com',
     },

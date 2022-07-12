@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { Button, Text, Group } from '@mantine/core'
@@ -22,6 +22,20 @@ const Login: NextPage = () => {
     },
   })
   const { push } = useRouter()
+
+  useEffect(() => {
+    const authSubscription = supabase.auth.onAuthStateChange(
+      (_event, sessionInfo) => {
+        if (sessionInfo) {
+          push('/')
+        }
+      }
+    )
+
+    return () => {
+      authSubscription.data?.unsubscribe()
+    }
+  }, [push])
 
   async function handleSubmit(values: LoginFormSchema) {
     try {

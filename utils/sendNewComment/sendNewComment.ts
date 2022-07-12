@@ -1,12 +1,12 @@
 import { showNotification } from '@mantine/notifications'
 
 import { supabase } from '../supabaseClient'
-import { CommentPayload } from '@/types'
+import { Comment, CommentPayload } from '@/types'
 
 export const sendNewComment = async (
   comment: CommentPayload
 ): Promise<{
-  addedComment: CommentPayload | null
+  addedComment: Comment | null
 }> => {
   try {
     const { data, error } = await supabase
@@ -17,7 +17,8 @@ export const sendNewComment = async (
 
     const [addedComment] = data
 
-    return { addedComment }
+    return { addedComment } as { addedComment: Comment | null }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     showNotification({
       title: 'Something went wrong',

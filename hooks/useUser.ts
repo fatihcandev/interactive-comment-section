@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { supabase } from '@/utils/supabaseClient'
 import { User } from '@/types'
@@ -6,7 +6,7 @@ import { User } from '@/types'
 type HookReturnType = { user: User | null; currentUserId?: string }
 
 export const useUser = (id?: string): HookReturnType => {
-  const currentUserId = useMemo(() => supabase.auth.user()?.id, [])
+  const currentUserId = supabase.auth.user()?.id
   const [user, setUser] = useState<User | null>(null)
 
   useEffect(() => {

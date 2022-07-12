@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import type { NextPage } from 'next'
-import { useRouter } from 'next/router'
 import { Button, Group, Text } from '@mantine/core'
 import { useForm, zodResolver } from '@mantine/form'
 import { showNotification } from '@mantine/notifications'
@@ -23,7 +22,6 @@ const SignUp: NextPage = () => {
       password: '',
     },
   })
-  const { push } = useRouter()
 
   async function handleSubmit(values: SignUpFormSchema) {
     try {
@@ -49,7 +47,6 @@ const SignUp: NextPage = () => {
         message: 'You are being redirected to the login page',
         color: 'green',
       })
-      push('/login')
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       showNotification({

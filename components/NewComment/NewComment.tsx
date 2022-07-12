@@ -1,76 +1,68 @@
-import { FormEventHandler, useCallback, useMemo } from 'react'
+import { FormEventHandler, useState } from 'react'
+import { Button } from '@mantine/core'
 import styled from 'styled-components'
 
 import { Avatar } from '../Avatar'
-import { Button } from '../Button'
 import { Input } from '../Input'
 import { useUser } from '@/hooks'
-import { CommentPayload } from '@/types'
+import { Comment, CommentPayload } from '@/types'
 import { getMediaQuery, sendNewComment } from '@/utils'
 
 export type NewCommentProps = React.ComponentPropsWithoutRef<'form'> & {
   replyingTo?: string
+  onCommentAdded: (comment: Comment) => void
 }
 
 export const NewComment: React.FC<NewCommentProps> = ({
   replyingTo = '',
+  onCommentAdded,
   ...props
 }) => {
+  const [isAddingComment, setIsAddingComment] = useState(false)
   const { user } = useUser()
-  const avatar = useMemo(
-    () => <StyledAvatar src={user?.avatar_url} alt={user?.username} />,
-    [user]
-  )
-  const button = useMemo(
-    () => (
-      <StyledButton type="submit">{replyingTo ? 'reply' : 'send'}</StyledButton>
-    ),
-    [replyingTo]
-  )
-  const input = useMemo(
-    () => (
+
+  const handleSend: FormEventHandler<HTMLFormElement> = async e => {
+    if (!user) return
+
+    setIsAddingComment(true)
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const content = formData.get('content') as string
+    const comment: CommentPayload = {
+      content,
+      user,
+    }
+
+    // if (replyingTo) {
+    //   return sendReply({
+    //     replyingTo,
+    //     reply: {
+    //       ...comment,
+    //       replyingTo,
+    //     },
+    //   })
+    // }
+
+    const { addedComment } = await sendNewComment(comment)
+    if (!addedComment) return
+    onCommentAdded(addedComment)
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    e.target.reset()
+    setIsAddingComment(false)
+  }
+
+  return (
+    <Container onSubmit={handleSend} {...props}>
+      <StyledAvatar src={user?.avatarUrl} alt={user?.username} />
       <StyledInput
         name="content"
         placeholder={replyingTo ? `@${replyingTo}` : 'Add a comment...'}
         required
       />
-    ),
-    [replyingTo]
-  )
-
-  const handleSend: FormEventHandler<HTMLFormElement> = useCallback(
-    async e => {
-      e.preventDefault()
-      const formData = new FormData(e.target as HTMLFormElement)
-      const content = formData.get('content') as string
-      const comment: CommentPayload = {
-        content,
-        user_id: user?.id,
-      }
-
-      // if (replyingTo) {
-      //   return sendReply({
-      //     replyingTo,
-      //     reply: {
-      //       ...comment,
-      //       replyingTo,
-      //     },
-      //   })
-      // }
-
-      await sendNewComment(comment)
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      e.target.reset()
-    },
-    [user]
-  )
-
-  return (
-    <Container onSubmit={handleSend} {...props}>
-      {avatar}
-      {input}
-      {button}
+      <StyledButton type="submit" loading={isAddingComment}>
+        {replyingTo ? 'reply' : 'send'}
+      </StyledButton>
     </Container>
   )
 }
@@ -94,7 +86,7 @@ const Container = styled.form`
   })}
 `
 
-const StyledAvatar: typeof Avatar = styled(Avatar)`
+const StyledAvatar = styled(Avatar)`
   ${getMediaQuery({
     breakpoint: 'sm',
     minMax: 'max',
@@ -104,7 +96,8 @@ const StyledAvatar: typeof Avatar = styled(Avatar)`
   })}
 `
 
-const StyledButton = styled(Button)`
+const StyledButton: typeof Button = styled(Button)`
+  text-transform: uppercase;
   ${getMediaQuery({
     breakpoint: 'sm',
     minMax: 'max',

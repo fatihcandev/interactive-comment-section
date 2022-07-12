@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { Skeleton } from '@mantine/core'
 
@@ -15,14 +15,8 @@ export type CommentProps = {
 }
 
 const Comment: React.FC<CommentProps> = ({ comment }) => {
-  const { user, currentUserId } = useUser(comment.user_id)
-  const [isCurrentUser, setIsCurrentUser] = useState<boolean | null>(null)
-
-  useEffect(() => {
-    if (!currentUserId) return
-
-    setIsCurrentUser(currentUserId === comment.user_id)
-  }, [comment.user_id, currentUserId])
+  const { currentUserId } = useUser(comment.user.id)
+  const isCurrentUser = currentUserId ? currentUserId === comment.user.id : null
 
   function handleDelete(commentId: string) {
     console.log('clicked on delete', commentId)
@@ -51,21 +45,21 @@ const Comment: React.FC<CommentProps> = ({ comment }) => {
         onUpvote={handleUpvote}
         onDownvote={handleDownvote}
       />
-      {!user || isCurrentUser === null ? (
+      {isCurrentUser === null ? (
         <Skeleton width="100%" height={20} />
       ) : (
         <>
           <Actions
             commentId={comment.id}
-            commentUsername={user.username}
+            commentUsername={comment.user.username}
             isCurrentUser={isCurrentUser}
             onDelete={handleDelete}
             onEdit={handleEdit}
             onReply={handleReply}
           />
           <Info
-            user={user}
-            createdAt={comment.created_at}
+            user={comment.user}
+            createdAt={comment.createdAt}
             isCurrentUser={isCurrentUser}
           />
         </>
