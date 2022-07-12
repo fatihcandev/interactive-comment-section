@@ -11,6 +11,7 @@ export type Comment = {
   createdAt: string
   score: number | null
   user: User
+  isCurrentUser: boolean
   replies: Reply[]
 }
 

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import type { NextPage } from 'next'
+import { useState } from 'react'
+import type { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { Button, Text, Group } from '@mantine/core'
 import { useForm, zodResolver } from '@mantine/form'
@@ -21,21 +21,8 @@ const Login: NextPage = () => {
       password: '',
     },
   })
+
   const { push } = useRouter()
-
-  useEffect(() => {
-    const authSubscription = supabase.auth.onAuthStateChange(
-      (_event, sessionInfo) => {
-        if (sessionInfo) {
-          push('/')
-        }
-      }
-    )
-
-    return () => {
-      authSubscription.data?.unsubscribe()
-    }
-  }, [push])
 
   async function handleSubmit(values: LoginFormSchema) {
     try {
@@ -92,3 +79,20 @@ const Login: NextPage = () => {
 }
 
 export default Login
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const { user } = await supabase.auth.api.getUserByCookie(req)
+
+  if (user) {
+    return {
+      props: {},
+      redirect: {
+        destination: '/',
+      },
+    }
+  }
+
+  return {
+    props: {},
+  }
+}

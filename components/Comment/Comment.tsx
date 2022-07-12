@@ -1,12 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Skeleton } from '@mantine/core'
 
 import { Actions } from './Actions'
 import { Info } from './Info'
 import { Vote } from './Vote'
 import { Content } from './Content'
-import { useUser } from '@/hooks'
 import { Comment as CommentType } from '@/types'
 import { getMediaQuery } from '@/utils'
 
@@ -15,9 +13,6 @@ export type CommentProps = {
 }
 
 const Comment: React.FC<CommentProps> = ({ comment }) => {
-  const { currentUserId } = useUser(comment.user.id)
-  const isCurrentUser = currentUserId ? currentUserId === comment.user.id : null
-
   function handleDelete(commentId: string) {
     console.log('clicked on delete', commentId)
   }
@@ -45,25 +40,19 @@ const Comment: React.FC<CommentProps> = ({ comment }) => {
         onUpvote={handleUpvote}
         onDownvote={handleDownvote}
       />
-      {isCurrentUser === null ? (
-        <Skeleton width="100%" height={20} />
-      ) : (
-        <>
-          <Actions
-            commentId={comment.id}
-            commentUsername={comment.user.username}
-            isCurrentUser={isCurrentUser}
-            onDelete={handleDelete}
-            onEdit={handleEdit}
-            onReply={handleReply}
-          />
-          <Info
-            user={comment.user}
-            createdAt={comment.createdAt}
-            isCurrentUser={isCurrentUser}
-          />
-        </>
-      )}
+      <Actions
+        commentId={comment.id}
+        commentUsername={comment.user.username}
+        isCurrentUser={comment.isCurrentUser}
+        onDelete={handleDelete}
+        onEdit={handleEdit}
+        onReply={handleReply}
+      />
+      <Info
+        user={comment.user}
+        createdAt={comment.createdAt}
+        isCurrentUser={comment.isCurrentUser}
+      />
       <Content content={comment.content} />
     </Container>
   )

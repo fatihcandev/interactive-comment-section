@@ -1,37 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 import styled from 'styled-components'
+import { Button } from '@mantine/core'
+import { showNotification } from '@mantine/notifications'
 
 import { NewComment } from '@/components/NewComment'
 import { Comment } from '@/components/Comment'
 import type { Comment as CommentType } from '@/types'
 import { getComments } from '@/utils'
 import { supabase } from '@/utils/supabaseClient'
-import { Button } from '@mantine/core'
-import { showNotification } from '@mantine/notifications'
 
-const Home: NextPage<{ fetchedComments: CommentType[] }> = ({
-  fetchedComments,
+const Home: NextPage<{ comments: CommentType[] }> = ({
+  comments: fetchedComments,
 }) => {
   const [comments, setComments] = useState<CommentType[]>(fetchedComments)
   const [isLoggingOut, setIsLoggingOut] = useState(false)
-  const { push } = useRouter()
-
-  useEffect(() => {
-    const authSubscription = supabase.auth.onAuthStateChange(
-      (_event, sessionInfo) => {
-        if (!sessionInfo) {
-          push('/login')
-        }
-      }
-    )
-
-    return () => {
-      authSubscription.data?.unsubscribe()
-    }
-  }, [push])
 
   const handleLogout = async () => {
     try {
@@ -113,12 +97,32 @@ const StyledNewComment = styled(NewComment)`
 `
 
 export const getServerSideProps: GetServerSideProps<{
-  fetchedComments: CommentType[]
-}> = async () => {
+  comments: CommentType[]
+}> = async ({ req }) => {
+  const { user } = await supabase.auth.api.getUserByCookie(req)
+
+  if (!user) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    }
+  }
+
   const fetchedComments = await getComments()
+  const comments = fetchedComments.map(comment => {
+    if (comment.user.id === user.id) {
+      return {
+        ...comment,
+        isCurrentUser: true,
+      }
+    }
+    return comment
+  })
   return {
     props: {
-      fetchedComments,
+      comments,
     },
   }
 }
